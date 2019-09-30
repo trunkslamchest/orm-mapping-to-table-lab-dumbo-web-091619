@@ -1,7 +1,5 @@
 class Student
 
-class Student
-
 	attr_reader :id
 	attr_accessor :name, :grade
 
@@ -25,6 +23,7 @@ class Student
 			SQL
 
 	DB[:conn].execute(sql)
+	# database_connection.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT, grade INTEGER)")
 	end
 
 	def self.drop_table
@@ -37,15 +36,16 @@ class Student
 
 	def self.save
 		sql = <<-SQL
-		  INSERT INTO students (id, name, grade)
+		  INSERT INTO students (name, grade)
 		  VALUES (?, ?, ?)
 		SQL
 
-		DB[:conn].execute(sql, self.id, self.name, self.grade)
+		DB[:conn].execute(sql, self.name, self.grade)
+	# database_connection.execute("INSERT INTO student (name, grade, id) VALUES (?, ?, ?)",name , grade, id)
 	end
 
-	def self.create(id, name, grade)
-		student = Student.new(id, name, grade)
+	def self.create(name, grade)
+		student = Student.new(name, grade)
 		student.save
 		student
 	end
@@ -57,10 +57,4 @@ class Student
   # Remember, you can access your database connection anywhere in this class
   #  with DB[:conn]
 
-end
-
-
-  # Remember, you can access your database connection anywhere in this class
-  #  with DB[:conn]  
-  
 end
