@@ -45,7 +45,7 @@ class Student
 	end
 
 	def self.create(id, name, grade)
-		student = Cat.new(id, name, grade)
+		student = Student.new(id, name, grade)
 		student.save
 		student
 	end
