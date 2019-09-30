@@ -23,7 +23,6 @@ class Student
 			SQL
 
 	DB[:conn].execute(sql)
-	# database_connection.execute("CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, name TEXT, grade INTEGER)")
 	end
 
 	def self.drop_table
